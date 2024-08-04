@@ -28,22 +28,33 @@ const sendEmail = async (email, date) => {
   };
 
   try {
+    console.log("Attempting to send email with options:", mailOptions);
     await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully");
   } catch (error) {
+    console.error("Error in sendEmail:", error);
     throw new Error("[!] Failed to send email");
   }
+};
+
+
+const convertToISODate = (dateStr) => {
+  const [day, month, year] = dateStr.split('/');
+  return new Date(`${year}-${month}-${day}`).toISOString();
 };
 
 const createBooking = async (req, res) => {
   const { phonenumber, date, email } = req.body;
 
   try {
-    const existingBooking = await Bookings.findOne({ phonenumber, date, email });
+    const isoDate = convertToISODate(date);
+    
+    const existingBooking = await Bookings.findOne({ phonenumber, date: isoDate, email });
     if (existingBooking) {
       return res.status(400).json({ error: "[!] Booking already exists for this appointment" });
     }
 
-    const booking = await Bookings.create({ phonenumber, date, email });
+    const booking = await Bookings.create({ phonenumber, date: isoDate, email });
 
     await sendEmail(email, date);
 
@@ -63,7 +74,8 @@ const updateBooking = async (req, res) => {
     }
 
     const { phonenumber, date, email } = req.body;
-    const updateFields = { phonenumber, date, email };
+    const isoDate = convertToISODate(date);
+    const updateFields = { phonenumber, date: isoDate, email };
 
     const updatedBooking = await Bookings.findByIdAndUpdate(req.params.id, updateFields, { new: true });
 
@@ -76,8 +88,9 @@ const updateBooking = async (req, res) => {
 
 const getBooking = async (req, res) => {
   try {
+    const isoDate = convertToISODate(req.params.date);
     const booking = await Bookings.findOne({
-      date: req.params.date,
+      date: isoDate,
       phonenumber: req.params.phonenumber,
       email: req.params.email,
     });
@@ -89,6 +102,7 @@ const getBooking = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(400).json({ error: "[!] An error occurred when retrieving the booking" });
   }
 };
 
