@@ -5,8 +5,11 @@ const {
   updateBooking,
   getBooking,
   deleteBooking,
+  getAllBookings,
 } = require("../controllers/appointmentController");
 const { adminProtect } = require("../middleware/authMiddleware");
+
+router.route("/").get(getAllBookings);
 
 router.route("/create").post(createBooking);
 
@@ -15,5 +18,6 @@ router.route("/update/:id").put(adminProtect, updateBooking);
 router.route("/:date/:phonenumber/:email").get(getBooking);
 
 router.route("/delete/:id").delete(adminProtect, deleteBooking);
+
 
 module.exports = router;

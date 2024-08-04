@@ -14,8 +14,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-
-
 const sendEmail = async (email, date) => {
   const username = email.split('@')[0];
   const emailPath = path.join(__dirname, '../client/appointment.html');
@@ -35,7 +33,6 @@ const sendEmail = async (email, date) => {
     throw new Error("[!] Failed to send email");
   }
 };
-
 
 const convertToISODate = (dateStr) => {
   const [day, month, year] = dateStr.split('/');
@@ -112,7 +109,7 @@ const deleteBooking = async (req, res) => {
       return res.status(404).json({ message: "[+] Booking not found" });
     }
 
-    await booking.remove();
+    await Bookings.findByIdAndDelete(req.params.id);
 
     res.status(200).json({ message: "[+] Booking deleted successfully" });
   } catch (error) {
@@ -121,9 +118,20 @@ const deleteBooking = async (req, res) => {
   }
 };
 
+const getAllBookings = async (req, res) => {
+  try {
+    const bookings = await Bookings.find();
+    res.status(200).json(bookings);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: "[!] An error occurred when retrieving all bookings" });
+  }
+};
+
 module.exports = {
   createBooking,
   updateBooking,
   getBooking,
   deleteBooking,
+  getAllBookings,
 };
