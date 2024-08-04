@@ -34,10 +34,8 @@ const newsletterSubscribe = async (req, res) => {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
     res.status(200).json({ message: "[+] Subscription email sent successfully" });
   } catch (error) {
-    console.error("[!] Failed to send email:", error);
     res.status(500).json({ error: "[!] Failed to send email" });
   }
 };
