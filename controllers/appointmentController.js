@@ -14,6 +14,8 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+
+
 const sendEmail = async (email, date) => {
   const username = email.split('@')[0];
   const emailPath = path.join(__dirname, '../client/appointment.html');
@@ -28,11 +30,8 @@ const sendEmail = async (email, date) => {
   };
 
   try {
-    console.log("Attempting to send email with options:", mailOptions);
     await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully");
   } catch (error) {
-    console.error("Error in sendEmail:", error);
     throw new Error("[!] Failed to send email");
   }
 };
@@ -60,7 +59,6 @@ const createBooking = async (req, res) => {
 
     res.status(201).json({ ...booking.toObject() });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ error: "[!] An error occurred when creating the booking" });
   }
 };
