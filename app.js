@@ -11,7 +11,7 @@ const helmet = require("helmet");
 const { connectDB } = require("./config/db");
 const bodyParser = require("body-parser");
 const authRoute = require("./routes/authRoute");
-const subcriptionRoute = require("./routes/subcriptionRoute");
+const bookingRoute = require("./routes/bookingRoute");
 const appointmentRoute = require("./routes/appointmentRoute");
 
 dotenv.config();
@@ -23,7 +23,7 @@ const fetchDataFromServer = async () => {
   try {
     await fetch("https://farid-creations-server.onrender.com/current");
   } catch (error) {
-    console.error("[!] Error fetching data:", error);
+    console.error("Error fetching data:", error);
   }
 };
 
@@ -52,7 +52,7 @@ app.use(
 app.use(morgan("dev"));
 
 app.use("/api/v1/auth", authRoute);
-app.use("/api/v1/subcription", subcriptionRoute);
+app.use("/api/v1/booking", bookingRoute);
 app.use("/api/v1/appointment", appointmentRoute);
 
 app.get("/", (req, res) => {
@@ -61,8 +61,8 @@ app.get("/", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  console.error("[!] Unhandled error:", err);
-  res.status(500).json({ error: "[!] An unexpected error occurred" });
+  console.error("Unhandled error:", err);
+  res.status(500).json({ error: "An unexpected error occurred" });
 });
 
 app.listen(PORT, () => {

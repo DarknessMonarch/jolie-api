@@ -5,60 +5,77 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
         }
 
-        .h1 {
-            font-size: 8px;
-        }
-
-        p {
-            font-size: 1rem;
-        }
-
-
         .container {
             max-width: 600px;
             margin: 0 auto;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         .header {
-            padding: 10px;
+            padding: 20px;
             text-align: center;
-            margin-bottom: 20px;
             background-color: #c28568;
         }
 
         .logo {
-            max-width: 200px;
+            max-width: 150px;
+            height: auto;
         }
 
         .content {
-            padding: 20px;
+            padding: 30px 20px;
             background-color: #ffffff;
         }
 
+        h3 {
+            color: #333333;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666666;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .booking-details {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .booking-details p {
+            margin: 0;
+            font-size: 14px;
+            color: #333333;
+        }
+
         .content-foot {
-            margin-top: 10px;
+            margin-top: 30px;
+            text-align: center;
         }
 
         .content-foot p {
-            font-size: 1rem;
-        }
-
-        .content-foot span {
-            text-transform: capitalize;
+            font-size: 16px;
+            color: #333333;
         }
 
         .footer {
             padding: 20px;
-            font-size: 0.8rem;
-            color: #ffffff;
             text-align: center;
+            font-size: 14px;
+            color: #ffffff;
             background-color: #c28568;
         }
 
@@ -69,7 +86,7 @@
 
         .social-links {
             display: inline-block;
-            margin: 0 5px;
+            margin: 0 10px;
         }
 
         .social-links a {
@@ -78,10 +95,16 @@
         }
 
         .social-image {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             cursor: pointer;
             object-fit: cover;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            color: #ffffff;
+
         }
     </style>
 </head>
@@ -91,17 +114,27 @@
         <div class="header">
             <img class="logo"
                 src="https://res.cloudinary.com/dl070ggkc/image/upload/f_auto/q_auto/srbod1adfazosfv0pg23?_a=BAVAOKDW0"
-                alt="jolie logo">
+                alt="Jolie Beauty Haven">
         </div>
 
         <div class="content">
             <p>Hello {{username}},</p>
-            <br><br>
-            <h3>Newsletter Subscription</h3>
-            <p> Thank you for subscribing to our newsletter. Get 20% discount on your first appointment </p>
+
+            <h3>Welcome to Jolie's Beauty Haven</h3>
+            <p>We are delighted to confirm your booking for our salon services. Below are the details of your appointment:</p>
+
+            <div class="booking-details">
+                <p><strong>Category:</strong> {{category}}</p>
+                <p><strong>Description:</strong> {{description}}</p>
+                <p><strong>Time:</strong> {{categoryTime}}</p>
+                <p><strong>Add-ons:</strong> {{addsOn}}</p>
+                <p><strong>Date Booked:</strong> {{dateBooked}}</p>
+            </div>
+
+            <p>We look forward to welcoming you at our salon in California. If you have any questions or need to reschedule, please don't hesitate to contact us.</p>
 
             <div class="content-foot">
-                <p>Best regards, <br> <br> <span>Jolie Beauty Haven.</span></p>
+                <p>Best regards,<br><br><span>Jolie Beauty Haven</span></p>
             </div>
         </div>
 
@@ -109,30 +142,29 @@
             <p>Jolie Beauty Haven</p>
             <p>Phone: (+1) 484-744-0421</p>
             <p>Email: joliebeautyhavens@gmail.com</p>
-            <p>You are receiving this email because you booked an appointment</p>
+            <p>You are receiving this email because you booked an appointment with us.</p>
+
             <div class="social-icons">
                 <div class="social-links">
                     <a href="https://www.instagram.com/joliesbeautyhavend/" target="_blank">
                         <img src="https://raw.githubusercontent.com/zero-stealth/maili/master/src/assets/instagram.png"
-                            alt="instagram" class="social-image">
+                            alt="Instagram" class="social-image">
                     </a>
                 </div>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/company/jolie-s-beauty-haven/" target="_blank">
                         <img src="https://raw.githubusercontent.com/zero-stealth/maili/master/src/assets/twitter.png"
-                            alt="twitter" class="social-image">
+                            alt="Twitter" class="social-image">
                     </a>
                 </div>
-
-
                 <div class="social-links">
                     <a href="https://www.youtube.com/@joliesbeautyhavend" target="_blank">
                         <img src="https://raw.githubusercontent.com/zero-stealth/maili/master/src/assets/youtube.png"
-                            alt="youtube" class="social-image">
+                            alt="YouTube" class="social-image">
                     </a>
                 </div>
-
             </div>
+
             <p>Copyright (C) 2024 joliebeautyhavens.com All rights reserved.</p>
         </div>
     </div>

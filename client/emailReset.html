@@ -30,7 +30,28 @@
             padding: 10px;
             text-align: center;
             margin-bottom: 20px;
-            background-color: #ECD8BD;
+            background-color: #c28568;
+        }
+
+        .linkBtn {
+            border: none;
+            outline: none;
+            padding: 10px;
+            cursor: pointer;
+            color: #ffffff;
+            border-radius: 6px;
+            text-transform: capitalize;
+            background-color: #c28568;
+        }
+
+        a {
+            text-decoration: none !important;
+            color: #ffffff !important;
+        }
+
+
+        .linkBtn:hover {
+            background-color: #d49374;
         }
 
         .logo {
@@ -59,7 +80,7 @@
             font-size: 0.8rem;
             color: #ffffff;
             text-align: center;
-            background-color: #ECD8BD;
+            background-color: #c28568;
         }
 
         .social-icons {
@@ -97,35 +118,26 @@
         <div class="content">
             <p>Hello {{username}},</p>
             <br><br>
-            <h3>Welcome to jolie's beauty haven</h3>
-            <p>Your booking appointment for our saloon services has been booked on date {{date}}, visit us at california
-                to get the services </p>
+            <h3>Your password reset link</h3>
+            <p>Click on the <button class="linkBtn"><a href="{{resetUrl}}">link</a></button> to reset your password.</p>
+            <p>Ignore this email if it is not you who has requested for the reset link</p>
 
-            <div class="content-foot">
-                <p>Best regards, <br> <br> <span>Jolie Beauty Haven.</span></p>
-            </div>
         </div>
 
         <div class="footer">
             <p>Jolie Beauty Haven</p>
             <p>Phone: (+1) 484-744-0421</p>
             <p>Email: joliebeautyhavens@gmail.com</p>
-            <p>You are receiving this email because you booked an appointment</p>
+            <p>You are receiving this email because you want to reset password.</p>
             <div class="social-icons">
                 <div class="social-links">
-                    <a href="https://www.facebook.com/" target="_blank">
-                        <img src="https://raw.githubusercontent.com/zero-stealth/maili/master/src/assets/facebook.png"
-                            alt="facebook" class="social-image">
-                    </a>
-                </div>
-                <div class="social-links">
-                    <a href="https://instagram.com/" target="_blank">
+                    <a href="https://www.instagram.com/joliesbeautyhavend/" target="_blank">
                         <img src="https://raw.githubusercontent.com/zero-stealth/maili/master/src/assets/instagram.png"
                             alt="instagram" class="social-image">
                     </a>
                 </div>
                 <div class="social-links">
-                    <a href="https://twitter.com/" target="_blank">
+                    <a href="https://www.linkedin.com/company/jolie-s-beauty-haven/" target="_blank">
                         <img src="https://raw.githubusercontent.com/zero-stealth/maili/master/src/assets/twitter.png"
                             alt="twitter" class="social-image">
                     </a>
@@ -133,7 +145,7 @@
 
 
                 <div class="social-links">
-                    <a href="https://www.youtube.com/" target="_blank">
+                    <a href="https://www.youtube.com/@joliesbeautyhavend" target="_blank">
                         <img src="https://raw.githubusercontent.com/zero-stealth/maili/master/src/assets/youtube.png"
                             alt="youtube" class="social-image">
                     </a>

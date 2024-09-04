@@ -2,12 +2,32 @@ const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema(
   {
-    phonenumber: {
+    category: {
       type: String,
       required: true,
     },
-    date: {
-      type: Date,
+    description: {
+      type: String,
+      required: true,
+    },
+    categoryTime: {
+      type: String,
+      required: true,
+    },
+    addsOn: [
+      {
+        title: {
+          type: String,
+          required: true,
+        },
+        time: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+    dateBooked: {
+      type: Date,  
       required: true,
     },
     email: {

@@ -23,13 +23,13 @@ const protect = async (req, res, next) => {
       next();
     } catch (error) {
       if (error.name === "TokenExpiredError") {
-        return res.status(401).json({ error: "[!] Login session expired. Please login again." });
+        return res.status(401).json({ error: "Login session expired. Please login again." });
       } else {
-        return res.status(401).json({ error: "[!] Invalid token" });
+        return res.status(401).json({ error: "Invalid token" });
       }
     }
   } else {
-    return res.status(401).json({ error: "[!] No authorization token provided" });
+    return res.status(401).json({ error: "No authorization token provided" });
   }
 };
 
@@ -54,18 +54,18 @@ const adminProtect = async (req, res, next) => {
           req.user = user;
           next();
         } else {
-          return res.status(401).json({ error: "[!] Unauthorized attempt." });
+          return res.status(401).json({ error: "Unauthorized attempt." });
         }
       }
     } catch (error) {
       if (error.name === "TokenExpiredError") {
-        return res.status(401).json({ error: "[!] Login session expired. Please login again." });
+        return res.status(401).json({ error: "Login session expired. Please login again." });
       } else {
-        return res.status(401).json({ error: "[!] Invalid token" });
+        return res.status(401).json({ error: "Invalid token" });
       }
     }
   } else {
-    return res.status(401).json({ error: "[!] No authorization token provided" });
+    return res.status(401).json({ error: "No authorization token provided" });
   }
 };
 
