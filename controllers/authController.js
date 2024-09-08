@@ -65,8 +65,9 @@ const login = async (req, res) => {
 
 const createUser = async (req, res) => {
   const { email, password } = req.body;
-
-  console.log("User Email:", email);
+  const username = email.split('@')[0];
+  const emailPath = path.join(__dirname, '../client/welcome.html');
+  const emailTemplate = fs.readFileSync(emailPath, 'utf-8');
 
   try {
     const existingUser = await User.findOne({ email });
@@ -83,7 +84,6 @@ const createUser = async (req, res) => {
       isAdmin: email.toLowerCase() === predefinedAdminEmail.toLowerCase(),
     });
 
-    console.log("Is Admin:", newUser.isAdmin);
 
     await newUser.save();
 
@@ -92,6 +92,18 @@ const createUser = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
+
+    const personalizedTemplate = emailTemplate
+    .replace('{{username}}', username);
+
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: "Welcome to Joelies Beauty Haven",
+    html: personalizedTemplate,
+  };
+  
+  await transporter.sendMail(mailOptions);
 
     res.status(201).json({
       message: "User registered successfully",
